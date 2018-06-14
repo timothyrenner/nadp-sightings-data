@@ -17,9 +17,14 @@ def main(input_file):
 
     kml_xpath = curry(xpath)(tree=dogman, namespaces=namespaces)
 
-    # DEBUG - just to make sure the plumbing works.
-    print(kml_xpath("//kml:Placemark")[0])
-    # END DEBUG.
+    descriptions = kml_xpath("//kml:Placemark/kml:description/text()")
+    titles = kml_xpath("//kml:Placemark/kml:name/text()")
+    coordinates = kml_xpath("//kml:Placemark/kml:Point/kml:coordinates/text()")
+
+    assert len(descriptions) == len(titles)
+    assert len(titles) == len(coordinates)
+
+    # TODO: Zip together and write output.
 
 
 if __name__ == "__main__":
