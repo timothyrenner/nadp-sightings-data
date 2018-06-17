@@ -1,4 +1,5 @@
 import click
+import csv
 
 from lxml import etree
 from toolz import curry
@@ -8,7 +9,12 @@ def xpath(xpath_str, tree, namespaces):
 
 @click.command()
 @click.argument("input_file", type=click.File("r"))
-def main(input_file):
+@click.option(
+    "--output-file", "-o",
+    type=click.File("w"),
+    default="data/raw/dogman_sightings.csv"
+)
+def main(input_file, output_file):
     namespaces = {
         "kml": "http://www.opengis.net/kml/2.2"
     }
@@ -24,7 +30,17 @@ def main(input_file):
     assert len(descriptions) == len(titles)
     assert len(titles) == len(coordinates)
 
-    # TODO: Zip together and write output.
+    writer = csv.DictWriter(
+        output_file,
+        fieldnames=["title", "description", "coordinates"]
+    )
+    writer.writeheader()
+    for title,description,coordinates in zip(descriptions, titles, coordinates):
+        writer.writerow({
+            "title": title,
+            "description": description,
+            "coordinates": coordinates
+        })
 
 
 if __name__ == "__main__":
