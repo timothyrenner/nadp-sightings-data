@@ -35,7 +35,7 @@ def main(input_file, output_file):
         fieldnames=["title", "description", "coordinates"]
     )
     writer.writeheader()
-    for title,description,coordinates in zip(descriptions, titles, coordinates):
+    for title,description,coordinates in zip(titles, descriptions, coordinates):
         writer.writerow({
             "title": title,
             "description": description,
