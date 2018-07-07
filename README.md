@@ -4,6 +4,7 @@ The North American Dogman Project ([NADP](https://www.northamericandogmanproject
 They have collected hundreds of sightings and host them on a map [here](https://www.northamericandogmanproject.com/encounters-.html).
 
 This repository contains code for extracting and cleaning this dataset for further analysis.
+The dataset is hosted on [data.world](https://data.world/timothyrenner/dogman-sightings).
 
 ## Setup
 
