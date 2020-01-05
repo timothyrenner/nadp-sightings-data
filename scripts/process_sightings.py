@@ -134,7 +134,6 @@ def main(input_file, output_file):
             sighting_date = sighting_date.strftime("%Y-%m-%d")
         else:
             no_dates += 1
-        # TODO: Remove HTML tags from description.
 
         detagged_description = strip_html_tags(row["description"])
 
